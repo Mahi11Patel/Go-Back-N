@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Go-Back-N ARQ Simulator</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<header>
+  <div><div class="eyebrow">COMPUTER NETWORKS • ARQ SIMULATOR</div><h1>Go-Back-N <span>ARQ</span></h1><p>Sender and Receiver simulation using a real TCP socket connection. Frame loss is generated automatically.</p></div>
+  <div class="badge online">● TCP Socket Ready</div>
+</header>
+<section class="controls card">
+  <div class="control"><label>Window Size</label><input id="window" type="number" min="1" max="6" value="4"></div>
+  <div class="control"><label>Total Frames</label><input id="total" type="number" min="4" max="20" value="10"></div>
+  <div class="control"><label>Timeout (ms)</label><input id="timeout" type="number" min="1000" max="5000" value="2200"></div>
+  <div class="buttons"><button id="start" class="primary">▶ Start</button><button id="pause">Ⅱ Pause</button><button id="reset">↻ Reset</button></div>
+</section>
+<section class="stats">
+ <div class="stat card"><small>SENDER BASE</small><strong id="base">0</strong></div>
+ <div class="stat card"><small>NEXT FRAME</small><strong id="next">0</strong></div>
+ <div class="stat card"><small>RECEIVER EXPECTS</small><strong id="expected">0</strong></div>
+ <div class="stat card"><small>LAST ACK</small><strong id="ack">—</strong></div>
+ <div class="stat card"><small>RETRANSMISSIONS</small><strong id="retrans">0</strong></div>
+</section>
+<main class="grid">
+<section class="card panel"><div class="panel-title"><h2>Sender</h2><span class="tag blue">SENDER</span></div><p class="hint">Only the frames inside the current sending window can be outstanding.</p><div id="sender" class="frames"></div><div class="info"><span>Window: <b id="windowText">0 – 3</b></span><span id="senderStatus">Ready</span></div></section>
+<section class="card panel"><div class="panel-title"><h2>Receiver</h2><span class="tag green">RECEIVER</span></div><p class="hint">Accepts only the next expected frame; later frames are discarded.</p><div id="receiver" class="frames"></div><div class="info"><span>Expected: <b id="expectedText">Frame 0</b></span><span id="receiverStatus">Waiting</span></div></section>
+</main>
+<section class="card log-card"><div class="panel-title"><h2>Transmission Log</h2><button id="clear">Clear</button></div><div id="log" class="log"></div></section>
+</div><script src="app.js"></script>
+</body></html>
